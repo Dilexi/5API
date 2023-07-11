@@ -60,7 +60,6 @@ def get_statistic_vacancies_sj():
             vacancies = get_vacancies_sj(sj_token, language, page=page)
             if not vacancies['objects']:
                 break
-
             for vacancy in vacancies['objects']:
                 salary_info = predict_rub_salary(vacancy["payment_from"],
                                                  vacancy["payment_to"])
@@ -85,7 +84,6 @@ def get_statistic_vacancies_sj():
 def get_vacancies_hh(language, page=0):
     url = 'https://api.hh.ru/vacancies'
     params = {'text': language, 'area': 1, 'page': page}
-
     response = requests.get(url, params=params)
     return response.json()
 
@@ -153,9 +151,7 @@ def create_table(title, statistics):
 
 def main():
     load_dotenv()
-
     hh_table = create_table(HH_TITLE, get_statistic_vacancies_hh())
-
     sj_table = create_table(SJ_TITLE, get_statistic_vacancies_sj())
     print(f"{sj_table}\n{hh_table}")
 
