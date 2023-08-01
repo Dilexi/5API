@@ -22,13 +22,15 @@ def predict_rub_salary(salary_from=None, salary_to=None):
 
 
 def get_vacancies_sj(key, language="Python", page=0):
+    period_in_days = 30
+    catalogue_count = 48
     url = "https://api.superjob.ru/2.0/vacancies/"
     headers = {"X-Api-App-Id": key}
 
     params = {
         "town": "Moscow",
-        "period": 30,
-        "catalogues": 48,
+        "period": period_in_days,
+        "catalogues": catalogue_count,
         "keyword": language,
         "page": page
     }
@@ -81,8 +83,9 @@ def get_statistic_vacancies_sj(sj_token):
 
 
 def get_vacancies_hh(language, page=0):
+    area = 1
     url = 'https://api.hh.ru/vacancies'
-    params = {'text': language, 'area': 1, 'page': page}
+    params = {'text': language, 'area': area, 'page': page}
     response = requests.get(url, params=params)
     response.raise_for_status()
     return response.json()
