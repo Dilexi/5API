@@ -134,18 +134,18 @@ def get_statistic_vacancies_hh():
 
 
 def create_table(title, statistics):
-    table_data = [[
+    job_vacancy_table = [[
         "Язык программирования",
         "Вакансий найдено",
         "Вакансий обработано",
         "Средняя зарплата"
     ]]
     for language, vacancies in statistics.items():
-        table_data.append([
+        job_vacancy_table.append([
             language, vacancies["vacancies_found"],
             vacancies["vacancies_processed"], vacancies["average_salary"]
         ])
-    table = AsciiTable(table_data, title)
+    table = AsciiTable(job_vacancy_table, title)
     return table.table
 
 
