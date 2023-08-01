@@ -38,8 +38,7 @@ def get_vacancies_sj(key, language="Python", page=0):
     return response.json()
 
 
-def get_statistic_vacancies_sj():
-    sj_token = os.environ['SJ_TOKEN']
+def get_statistic_vacancies_sj(sj_token):
     vacancies_by_language = {}
     languages = [
         "Python",
@@ -152,8 +151,9 @@ def create_table(title, statistics):
 
 def main():
     load_dotenv()
+    sj_token = os.environ['SJ_TOKEN']
     hh_table = create_table(HH_TITLE, get_statistic_vacancies_hh())
-    sj_table = create_table(SJ_TITLE, get_statistic_vacancies_sj())
+    sj_table = create_table(SJ_TITLE, get_statistic_vacancies_sj(sj_token))
     print(f"{sj_table}\n{hh_table}")
 
 
