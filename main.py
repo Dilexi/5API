@@ -60,11 +60,11 @@ def get_statistic_vacancies_sj(sj_token):
             if not vacancies['objects']:
                 break
             for vacancy in vacancies['objects']:
-                salary_info = predict_rub_salary(vacancy["payment_from"],
+                predicted_salary = predict_rub_salary(vacancy["payment_from"],
                                                  vacancy["payment_to"])
-                if salary_info:
+                if predicted_salary:
                     vacancies_processed += 1
-                    salary_by_vacancy.append(salary_info)
+                    salary_by_vacancy.append(predicted_salary)
         total_vacancies = vacancies['total']
         average_salary = None
         if salary_by_vacancy:
@@ -112,12 +112,12 @@ def get_statistic_vacancies_hh():
             for vacancy in vacancies['items']:
                 salary = vacancy.get('salary')
                 if salary and salary['currency'] == 'RUR':
-                    salary_info = predict_rub_salary(
+                    predicted_salary = predict_rub_salary(
                         vacancy['salary'].get('from'),
                         vacancy['salary'].get('to'))
-                    if salary_info:
+                    if predicted_salary:
                         vacancies_processed += 1
-                        salary_by_vacancy.append(salary_info)
+                        salary_by_vacancy.append(predicted_salary)
         total_vacancies = vacancies['found']
         average_salary = None
         if salary_by_vacancy:
